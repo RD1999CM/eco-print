@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ECO-PRINT - Eco-Friendly Printing</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <style>
+    :root {
+      --green: #4CAF50;
+      --light-green: #f1f8e9;
+      --forest: #2e7d32;
+      --paper: #fafafa;
+      --font-main: 'Segoe UI', sans-serif;
+      --font-title: 'Georgia', serif;
+      --dark-green: #1b5e20;
+      --eco-background: #e6f5e6;
+      --forest-green: #33691e;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-main);
+      background-color: var(--paper);
+      color: var(--forest);
+    }
+
+    header {
+      position: relative;
+      height: 60vh;
+      background: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 100, 0, 0.4);
+      z-index: 1;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 2;
+      padding: 1rem;
+    }
+
+    .header-content h1 {
+      font-family: var(--font-title);
+      font-size: 2.5rem;
+      margin: 0;
+    }
+
+    .header-content p {
+      font-size: 1.2rem;
+      margin: 1rem 0;
+    }
+
+    .cta-button {
+      background-color: var(--green);
+      color: white;
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .cta-button:hover {
+      background-color: var(--dark-green);
+      transform: scale(1.05);
+    }
+
+    nav {
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      right: 30px;
+      display: flex;
+      justify-content: space-between;
+      z-index: 3;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-family: var(--font-title);
+      font-weight: bold;
+      color: white;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+    }
+
+    #langToggle {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border: 1px solid white;
+      padding: 0.3rem 0.7rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    section {
+      padding: 2rem 1rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-family: var(--font-title);
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--dark-green);
+    }
+
+    /* Services Section */
+    .services-section {
+      background-color: var(--light-green);
+      border-radius: 15px;
+      color: var(--forest-green);
+    }
+
+    .service-intro {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .service-intro p {
+      flex: 1;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      font-family: 'Merriweather', serif;
+    }
+
+    .service-image {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 100, 0, 0.2);
+    }
+
+    .service-details {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 2rem;
+    }
+
+    .detail-card {
+      background-color: var(--eco-background);
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(46, 125, 50, 0.15);
+      width: 300px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .detail-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .detail-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .detail-card p {
+      font-size: 1rem;
+      font-family: 'Merriweather', serif;
+      color: #2a4d19;
+      margin-bottom: 1rem;
+    }
+
+    .detail-card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    /* About Section */
+    .about-section {
+      background-color: var(--eco-background);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 8px 15px rgba(46, 125, 50, 0.25);
+    }
+
+    .about-section p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      font-family: 'Merriweather', serif;
+    }
+
+    .eco-details {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .eco-card {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: center;
+      background-color: var(--eco-background);
+      border-radius: 15px;
+      padding: 1.5rem;
+      box-shadow: 0 6px 12px rgba(46, 125, 50, 0.15);
+    }
+
+    .eco-card img {
+      width: 250px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 100, 0, 0.2);
+    }
+
+    .eco-text {
+      flex: 1;
+    }
+
+    .eco-text h3 {
+      font-size: 1.5rem;
+      color: var(--dark-green);
+      margin-bottom: 0.5rem;
+    }
+
+    .eco-text p {
+      font-size: 1.1rem;
+      font-family: 'Merriweather', serif;
+      line-height: 1.6;
+      color: var(--forest-green);
+    }
+#eco-checklist {
+  background-color: #f0fdf4;
+  padding: 40px;
+  border-top: 3px solid #4caf50;
+  font-family: 'Arial', sans-serif;
+}
+
+#eco-checklist h2 {
+  color: #2e7d32;
+  margin-bottom: 20px;
+}
+
+#eco-checklist label {
+  display: inline-block;
+  margin-right: 15px;
+  margin-bottom: 8px;
+}
+
+#eco-checklist input[type="checkbox"],
+#eco-checklist input[type="radio"],
+#eco-checklist input[type="number"],
+#eco-checklist select,
+#eco-checklist textarea {
+  margin-right: 5px;
+  accent-color: #4caf50;
+}
+
+#eco-checklist input[type="number"],
+#eco-checklist select,
+#eco-checklist textarea {
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  padding: 5px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#eco-checklist .button {
+  background-color: #388e3c;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+    .quote-box {
+      max-width: 600px;
+      margin: 2rem auto;
+      background-color: var(--eco-background);
+      border-left: 6px solid var(--green);
+      padding: 1.5rem;
+      font-size: 1.3rem;
+      font-family: 'Merriweather', serif;
+      color: var(--forest-green);
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 6px 15px rgba(46, 125, 50, 0.2);
+      display: none;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      background-color: #f0fdf4;
+      border-radius: 15px;
+      padding: 2rem;
+      max-width: 600px;
+      margin: 3rem auto;
+      box-shadow: 0 8px 20px rgba(46, 125, 50, 0.15);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    form input,
+    form textarea {
+      padding: 12px;
+      border: 2px solid var(--dark-green);
+      border-radius: 8px;
+      background-color: #e6f0e6;
+      font-size: 1rem;
+      resize: vertical;
+    }
+
+    form button {
+      background-color: var(--green);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    form button:hover {
+      background-color: var(--dark-green);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">ECO-PRINT</div>
+    <div>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <button id="langToggle">FR</button>
+    </div>
+  </nav>
+  <div class="header-content">
+    <h1>Eco-Friendly Printing Services</h1>
+    <p>The Future of Printing is ECO-PRINT.</p>
+    <button class="cta-button" id="quoteButton">Get a Quote</button>
+    <div id="quoteBox" class="quote-box">
+      🌱 "Print with love, care for the Earth. Every page tells a greener story!" 🌍
+    </div>
+  </div>
+</header>
+
+<section id="services" class="services-section">
+  <h2>Our Services</h2>
+  <div class="service-intro">
+    <p>From business cards to banners, we offer full-service printing using environmentally conscious materials and processes.</p>
+    <img src="ecoprint.jpg" alt="Eco Printing" class="service-image" />
+  </div>
+  <div class="service-details">
+    <div class="detail-card">
+      <h3>Eco Flyers</h3>
+      <p>Made with recycled paper and plant-based ink for a clean impact.</p>
+      <img src="https://d1x3eomzsc6lfz.cloudfront.net/apprintab/images/product/Apprintable-recycled-flyers-leaflet-eco.jpg" alt="Flyers" />
+    </div>
+    <div class="detail-card">
+      <h3>Business Cards</h3>
+      <p>Custom business cards printed on sustainable paper.</p>
+      <img src="https://cms.cloudinary.vpsvc.com/images/c_scale,dpr_auto,f_auto,q_auto:best,t_productPageHeroGalleryTransformation_v2,w_auto/legacy_dam/en-us/S001326360/marquee-business-card-kraft-001?cb=7d0f6f1b329f48c5724bcab69142fd7aea4320ab" alt="Business Cards" />
+    </div>
+  </div>
+</section>
+<p id="response"></p>
+
+<section id="about" class="about-section">
+  <h2>About Us</h2>
+  <p>At ECO-PRINT, our mission is to revolutionize printing with environmentally sustainable methods. From our soy-based inks to our commitment to carbon-neutral operations, we’re redefining what eco-printing means in Morocco.</p>
+  <div class="eco-details">
+    <div class="eco-card">
+      <img src="https://artisanpastellier.com/wp-content/uploads/2018/04/encres-vegetales-artisan-pastellier-web.jpg" alt="Soy Ink" />
+      <div class="eco-text">
+        <h3>Soy-Based Ink</h3>
+        <p>Derived from soybeans, our ink offers vibrant colors without toxic chemicals, making it safer for people and the planet.</p>
+      </div>
+    </div>
+    <div class="eco-card">
+      <img src="https://i0.wp.com/woodlarkblog.com/wp-content/uploads/2022/04/recycledpaper-paper1.jpg?resize=1100%2C733&ssl=1" alt="Recycled Paper" />
+      <div class="eco-text">
+        <h3>Recycled Paper</h3>
+        <p>We use only 100% post-consumer recycled paper to help reduce deforestation and landfill waste.</p>
+      </div>
+    </div>
+    <div class="eco-card">
+      <img src="https://www.petrossian.fr/media/magefan_blog/oeufs-colores-de-paques.jpg" alt="Natural Colors" />
+      <div class="eco-text">
+        <h3>Natural Dyes</h3>
+        <p>Our colors are extracted from flowers, fruits, and vegetables, ensuring a natural and vibrant finish without pollutants.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="eco-checklist" class="section">
+  <div class="container">
+    <h2>🌿 Check-list de Service d’Impression Écologique</h2>
+    <form id="ecoPrintForm">
+
+      <!-- Type de support -->
+      <p>✔️ Quel type de support souhaitez-vous ?</p>
+      <label><input type="checkbox" name="support" value="Flyers"> Flyers</label>
+      <label><input type="checkbox" name="support" value="Cartes de visite"> Cartes de visite</label>
+      <label><input type="checkbox" name="support" value="Affiches"> Affiches</label>
+      <label><input type="checkbox" name="support" value="Brochures"> Brochures</label>
+      <label><input type="checkbox" name="support" value="Autre"> Autre</label>
+
+      <!-- Papier -->
+      <p>✔️ Quel type de papier préférez-vous ?</p>
+      <label><input type="radio" name="papier" value="Recyclé"> Papier recyclé</label>
+      <label><input type="radio" name="papier" value="Biodégradable"> Papier biodégradable</label>
+      <label><input type="radio" name="papier" value="Certifié FSC"> Papier certifié FSC</label>
+
+      <!-- Encres -->
+      <p>✔️ Quel type d'encre souhaitez-vous ?</p>
+      <label><input type="radio" name="encre" value="À base de soja"> À base de soja</label>
+      <label><input type="radio" name="encre" value="Végétale"> Végétale</label>
+      <label><input type="radio" name="encre" value="Sans solvant"> Sans solvant</label>
+
+      <!-- Quantité -->
+      <p>✔️ Quelle est la quantité à imprimer ?</p>
+      <input type="number" name="quantite" min="100" placeholder="ex: 500 exemplaires">
+
+      <!-- Format -->
+      <p>✔️ Quel format préférez-vous ?</p>
+      <select name="format">
+        <option value="">-- Choisir un format --</option>
+        <option value="A6">A6</option>
+        <option value="A5">A5</option>
+        <option value="A4">A4</option>
+        <option value="Autre">Autre</option>
+      </select>
+
+      <!-- Livraison -->
+      <p>✔️ Souhaitez-vous une livraison ?</p>
+      <label><input type="radio" name="livraison" value="Oui"> Oui</label>
+      <label><input type="radio" name="livraison" value="Non"> Non</label>
+
+      <!-- Commentaire -->
+      <p>✔️ Autres précisions ?</p>
+      <textarea name="commentaire" rows="4" placeholder="Par exemple : couleur spécifique, délai, design fourni ou à créer..."></textarea>
+
+      <!-- Submit -->
+      <br><br>
+      <button type="submit" class="button">Envoyer la demande</button>
+      <p id="formMessage"></p>
+    </form>
+  </div>
+</section>
+
+<section id="contact" class="contact-section">
+  <h2>Contact Us</h2>
+  <form id="contactForm">
+    <input type="text" id="name" name="name" placeholder="Your Name" required/>
+    <input type="email" id="email" name="email" placeholder="Your Email" required/>
+    <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+    <button type="submit" id="sendMessageButton">Send Message</button>
+  </form>
+</section>
+
+<footer>
+  &copy; 2025 ECOPRINT. Made with 🌿 in Morocco.
+</footer>
+
+<script>
+  // Quote button toggles quote visibility
+  const quoteButton = document.getElementById('quoteButton');
+  const quoteBox = document.getElementById('quoteBox');
+  quoteButton.addEventListener('click', () => {
+    if (quoteBox.style.display === 'block') {
+      quoteBox.style.display = 'none';
+      quoteButton.textContent = 'Get a Quote';
+    } else {
+      quoteBox.style.display = 'block';
+      quoteButton.textContent = 'Hide Quote';
+    }
+  });
+
+  // Contact form submission handler
+  const contactForm = document.getElementById('contactForm');
+const response = document.getElementById('response');
+
+contactForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const name = contactForm.name.value.trim();
+  const email = contactForm.email.value.trim();
+  const message = contactForm.message.value.trim();
+
+  if (!name || !email || !message) {
+    alert('Please fill in all fields before sending your message.');
+    return;
+  }
+
+  alert("Thank you for reaching out! We'll get back to you soon 💌");
+  contactForm.reset();
+});
+
+
+
+    // Language Toggle
+  const toggle = document.getElementById("langToggle");
+  toggle.addEventListener("click", () => {
+    if (toggle.innerText === "FR") {
+      toggle.innerText = "EN";
+      document.querySelector(".header-content h1").innerText = "Services d'impression écologiques";
+      document.querySelector(".header-content p").innerText = "L'avenir de l'impression, c'est ECO-PRINT.";
+      document.querySelector(".cta-button").innerText = "Demander un devis";
+      document.querySelector("#services h2").innerText = "Nos Services";
+      document.querySelector("#service-intro p").textContent = "Des cartes de visite aux banderoles, nous proposons une impression complète avec des matériaux et des procédés respectueux de l'environnement";
+      document.querySelector(".detail-card h3").innerText = "Flyers écologiques";
+      document.querySelector(".detail-card h3").innerText = "Flyers écologiques";
+      document.querySelector("#about h2").innerText = "À propos";
+      document.querySelector("#about p").innerText = "ECOPRINT offre des impressions de haute qualité qui respectent la nature. Notre mission est de réduire l’impact environnemental sans compromettre la qualité ni le design.";
+      document.querySelector("#contact h2").innerText = "Contactez-nous";
+      document.querySelector("form button").innerText = "Envoyer le message";
+    } else {
+      location.reload(); // reset to English
+    }
+
+  });
+</script>
+
+</body>
+</html>
